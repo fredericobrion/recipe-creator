@@ -1,0 +1,17 @@
+.container {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  margin: 5rem;
+  padding: 1rem;
+  width: 30%;
+}
+
+.container h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.container input {
+  width: 80%;
+}

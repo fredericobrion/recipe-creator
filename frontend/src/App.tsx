@@ -1,13 +1,12 @@
-import './App.css'
-import CookingCardsContainer from './components/cookingCardsContainer'
+import "./App.css";
+import MainPage from "./pages/mainPage";
 
 function App() {
-
   return (
     <>
-      <CookingCardsContainer></CookingCardsContainer>
+      <MainPage></MainPage>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
