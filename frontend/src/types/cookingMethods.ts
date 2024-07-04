@@ -1,0 +1,1 @@
+export type CookingMethods = 'Microondas' | 'Forno' | 'Fogão';

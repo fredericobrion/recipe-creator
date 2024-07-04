@@ -1,15 +1,43 @@
-import styles from './cookingCard.module.css';
+import styles from "./cookingCard.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../state/store";
+import {
+  addCookingMethod,
+  removeCookingMethod,
+} from "../../state/cookingMethods/cookingMethodsSlice";
+import { CookingMethods } from "../../types/cookingMethods";
+import classNames from "classnames";
 
 type CookingCardProps = {
   image: string;
-  altText: string;
+  method: CookingMethods;
 };
 
-function CookingCard({ image, altText }: CookingCardProps) {
+function CookingCard({ image, method }: CookingCardProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const cookingMethods = useSelector(
+    (state: RootState) => state.cookingMethods.cookingMethods
+  );
+
+  const handleCookingMethod = (cookingMethod: CookingMethods) => {
+    if (cookingMethods.includes(cookingMethod)) {
+      dispatch(removeCookingMethod(cookingMethod));
+    } else {
+      dispatch(addCookingMethod(cookingMethod));
+    }
+  };
+
+  const methodSelected = cookingMethods.includes(method);
+
   return (
-    <div className={styles.container}>
-      <img src={image} alt={altText} />
-      <p>{altText}</p>
+    <div
+      className={classNames(styles.container, {
+        [styles.selected]: methodSelected,
+      })}
+      onClick={() => handleCookingMethod(method)}
+    >
+      <img src={image} alt={method} />
+      <p>{method}</p>
     </div>
   );
 }

@@ -7,6 +7,10 @@
   padding: 1rem;
 }
 
+.selected {
+  border: 2px solid rgb(0, 128, 0)
+}
+
 .container img {
   width: 30%;
 }
