@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IngredientsState {
-  ingredients: string[];
+  value: string[];
 }
 
 const initialState: IngredientsState = {
-  ingredients: [],
+  value: [],
 };
 
 const ingredientsSlice = createSlice({
@@ -13,10 +13,10 @@ const ingredientsSlice = createSlice({
   initialState,
   reducers: {
     addIngredient: (state, action: PayloadAction<string>) => {
-      state.ingredients = [...state.ingredients, action.payload];
+      state.value = [...state.value, action.payload];
     },
     removeIngredient: (state, action: PayloadAction<string>) => {
-      state.ingredients = state.ingredients.filter(
+      state.value = state.value.filter(
         (ingredient) => ingredient !== action.payload
       );
     },

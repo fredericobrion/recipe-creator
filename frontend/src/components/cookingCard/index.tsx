@@ -16,7 +16,7 @@ type CookingCardProps = {
 function CookingCard({ image, method }: CookingCardProps) {
   const dispatch = useDispatch<AppDispatch>();
   const cookingMethods = useSelector(
-    (state: RootState) => state.cookingMethods.cookingMethods
+    (state: RootState) => state.cookingMethods.value
   );
 
   const handleCookingMethod = (cookingMethod: CookingMethods) => {

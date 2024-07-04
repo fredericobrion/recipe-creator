@@ -2,11 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CookingMethods } from "../../types/cookingMethods";
 
 interface CookingMethodsState {
-  cookingMethods: string[];
+  value: CookingMethods[];
 }
 
 const initialState: CookingMethodsState = {
-  cookingMethods: [],
+  value: [],
 };
 
 const cookingMethodsSlice = createSlice({
@@ -14,10 +14,10 @@ const cookingMethodsSlice = createSlice({
   initialState,
   reducers: {
     addCookingMethod: (state, action: PayloadAction<CookingMethods>) => {
-      state.cookingMethods = [...state.cookingMethods, action.payload];
+      state.value = [...state.value, action.payload];
     },
     removeCookingMethod: (state, action: PayloadAction<CookingMethods>) => {
-      state.cookingMethods = state.cookingMethods.filter(
+      state.value = state.value.filter(
         (cookingMethod) => cookingMethod !== action.payload
       );
     },
