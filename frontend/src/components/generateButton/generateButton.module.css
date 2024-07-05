@@ -1,0 +1,18 @@
+.button {
+  background-color: var(--color-3);
+  border: none;
+  border-radius: 5px;
+  color: var(--color-1);
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  height: 3rem;
+  margin: 0 auto;
+  transition: 200ms;
+  width: 8rem;
+}
+
+.button:hover {
+  border: 2px solid var(--color-1);
+  font-weight: 700;
+}

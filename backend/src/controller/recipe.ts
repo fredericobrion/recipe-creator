@@ -6,11 +6,12 @@ export default class RecipeController {
   constructor(private recipeService = new RecipeService()) {}
 
   async generateRecipe(req: Request, res: Response) {
-    const equipments = req.body.equipments;
+    const people = req.body.people;
+    const cookingMethods = req.body.cookingMethods;
     const ingredients = req.body.ingredients;
     const spices = req.body.spices;
 
-    const response = await this.recipeService.generateRecipe(equipments, ingredients, spices);
+    const response = await this.recipeService.generateRecipe(people, cookingMethods, ingredients, spices);
 
     return res.status(mapStatusHTTP(response.status)).json(response.data);
   }

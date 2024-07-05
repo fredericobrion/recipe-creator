@@ -3,6 +3,9 @@ import cookingMethodsReducer from './cookingMethods/cookingMethodsSlice';
 import ingredientsReducer from './ingredients/ingredientsSlice';
 import spicesReducer from './spices/spicesSlice';
 import peopleReducer from './people/peopleSlice';
+import recipeReducer from './recipe/recipeSlice';
+import errorReducer from './error/errorSlice';
+import loadingReducer from './loading/loadingSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +13,9 @@ export const store = configureStore({
     ingredients: ingredientsReducer,
     spices: spicesReducer,
     people: peopleReducer,
+    recipe: recipeReducer,
+    error: errorReducer,
+    loading: loadingReducer,
   },
 });
 

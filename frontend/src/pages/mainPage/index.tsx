@@ -2,18 +2,18 @@ import CookingCardsContainer from "../../components/cookingCardsContainer";
 import IngredientsContainer from "../../components/ingredientsContainer";
 import styles from "./mainPage.module.css";
 import PeopleCounter from "../../components/peopleCounter";
-import Header from "../../components/header";
+import GenerateRecipeButton from "../../components/generateButton";
 
 function MainPage() {
   return (
     <div>
-      <Header></Header>
       <CookingCardsContainer></CookingCardsContainer>
       <PeopleCounter></PeopleCounter>
       <div className={styles.ingredientsContainer}>
         <IngredientsContainer spice={false}></IngredientsContainer>
         <IngredientsContainer spice={true}></IngredientsContainer>
       </div>
+      <GenerateRecipeButton/>
     </div>
   );
 }
