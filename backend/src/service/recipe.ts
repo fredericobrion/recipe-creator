@@ -15,8 +15,9 @@ export default class RecipeService {
     const instruction = `Irei te passar os equipamentos que possuo disponíveis e os ingredientes e temperos que possuo. Você irá me sugerir uma receita baseado no que te passar para ${people} ${
       people > 1 ? "pessoas" : "pessoa"
     }. Não precisa utilizar todos os ingredientes, temperos e equipamentos que possuo. Me passe a quantidade de cada ingrediente e tempero que devo utilizar.`;
-    const responseStructure = 'A sua resposta deverá ser dividida em 4 partes: nome da receita (somente o nome, não coloque nome da receita antes), ingredientes (coloque um - na frente de cada 1 e coloque os temperos misturados aqui), instruções (envie as instruções em ordem com um - na frente. Se for se referir a um intervalo de tempo, utilize o formato com a no meio ao invés de -. Exemplo: 2 a 3 minutos ao invés de 2 - 3 minutos) e informações nutricionais aproximadas. Antes e ao final de cada seção utilize **';
-    const equipmentsPrompt = `Equipamentos disponíveis: ${formatStringArray(
+    const responseStructure = 'A sua resposta deverá ser dividida em 4 partes: nome da receita, ingredientes (coloque um ~ na frente de cada 1 e coloque os temperos misturados aqui), instruções (envie as instruções em ordem com um ~ na frente.) e informações nutricionais aproximadas. Antes e ao final de cada seção utilize **';
+    const responseExample = 'Siga o exemplo para uma receita de frango assado com batata: \n**Frango Assado com Batata**\n**Ingredientes**\n~1kg de frango\n~1kg de batata\n~sal\n~pimenta\n~alecrim\n**Instruções**\n~Pré-aqueça o forno a 180 graus\n~Tempere o frango com sal, pimenta e alecrim\n~Corte as batatas em rodelas e tempere com sal\n~Coloque o frango e as batatas em uma assadeira e leve ao forno por 1 hora\n**Informações Nutricionais Aproximadas**\n~Calorias: 500\n~Proteínas: 50g\n~Carboidratos: 30g\n~Gorduras: 20g\n'
+    const equipmentsPrompt = `Os equipamentos disponíveis são: ${formatStringArray(
       cookingMethods
     )}`;
     const ingredientsPrompt = `Ingredientes disponíveis: ${formatStringArray(
@@ -24,7 +25,7 @@ export default class RecipeService {
     )}`;
     const spicesPrompt = `Temperos disponíveis: ${formatStringArray(spices)}`;
 
-    const prompt = `${instruction}\n\n${responseStructure}\n\n${equipmentsPrompt}\n\n${ingredientsPrompt}\n\n${spicesPrompt}`;
+    const prompt = `${instruction}\n\n${responseStructure}\n\n${responseExample}\n\n${equipmentsPrompt}\n\n${ingredientsPrompt}\n\n${spicesPrompt}`;
 
     const model = genAi.getGenerativeModel({ model: "gemini-pro" });
 

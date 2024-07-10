@@ -6,38 +6,36 @@ import {
   extractNutritionalInfo,
   extractRecipeName,
 } from "../../utils/recipeExtraction";
+import styles from "./recipePage.module.css";
 
 function RecipePage() {
   const recipe = useSelector((state: RootState) => state.recipe.value);
 
-  console.log(recipe);
-
-  // console.log('Nome da receita', extractRecipeName(recipe));
-  // console.log('Ingredientes: ',extractIngredients(recipe));
-  // console.log('Instruções: ', extractInstructions(recipe));
-  // console.log('Nutritional :',extractNutritionalInfo(recipe));
-  // console.log(recipe)
-
-  // console.log(recipe.split('**')[6]);
-
-
-
   return (
-    <div>
-      <p>{extractRecipeName(recipe)}</p>
+    <div className={styles.container}>
+      <h2 className={styles.recipeName}>{extractRecipeName(recipe)}</h2>
       <div>
-        <h2>INGREDIENTES</h2>
+        <h3 className={styles.subTitle}>Ingredientes</h3>
         {extractIngredients(recipe).map((ingredient, index) => {
-          return <p key={index}>{ingredient}</p>;
+          return <p key={index} className={styles.item}>- {ingredient}</p>;
         })}
       </div>
       <div>
-        <h2>INSTRUÇÕES</h2>
+        <h3 className={styles.subTitle}>Instruções</h3>
         {extractInstructions(recipe).map((instruction, index) => {
-          return <p key={index}>{instruction}</p>;
+          return <p key={index} className={styles.item}>{`${index + 1}) ${instruction}`}</p>;
         })}
       </div>
-      <p>{extractNutritionalInfo(recipe)}</p>
+      <div>
+        <h3 className={styles.subTitle}>Informações Nutricionais</h3>
+        {extractNutritionalInfo(recipe).map(([key, value], index) => {
+          return (
+            <p key={index} className={styles.item}>
+              <span>- {key}</span>: <span>{value}</span>
+            </p>
+          );
+        })}
+      </div>
     </div>
   );
 }

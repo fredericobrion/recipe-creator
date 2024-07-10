@@ -8,7 +8,7 @@ export const extractIngredients = (recipe: string): string[] => {
 
   const ingredientsSection = parts[4];
 
-  const regex = /- ([^\n\r-]+)/g;
+  const regex = /~([^\n]*)/g;
   const ingredientes = [];
   let match;
 
@@ -24,7 +24,7 @@ export const extractInstructions = (recipe: string): string[] => {
 
   const instructionsSection = parts[6];
 
-  const regex = /- ([^\n\r-]+)/g;
+  const regex = /~([^\n]*)/g;
   const instructions = [];
   let match;
 
@@ -35,19 +35,21 @@ export const extractInstructions = (recipe: string): string[] => {
   return instructions;
 };
 
-export const extractNutritionalInfo = (recipe: string): [string, string][] => {
+export const extractNutritionalInfo = (recipe: string): string[][] => {
   const parts = recipe.split("**");
 
-  const nutritionalInfoSection = parts[parts.length - 1];
+  const nutritionalInfoSection = parts[8];
 
-  const nutritionalInfo = nutritionalInfoSection
-    .split('-')
-    .map(info => info.trim())
-    .filter(info => info.length > 0 && info.includes(':'))
-    .map(info => {
-      const [name, value] = info.split(':').map(part => part.trim());
-      return [name, value] as [string, string];
-    });
+  const regex = /~([^\n]*)/g;
+
+  const nutritionalInfo = [];
+
+  let match;
+
+  while ((match = regex.exec(nutritionalInfoSection)) !== null) {
+    const [chave, valor] = match[1].split(':').map(str => str.trim());
+    nutritionalInfo.push([chave, valor]);
+  }
 
   return nutritionalInfo;
 };
