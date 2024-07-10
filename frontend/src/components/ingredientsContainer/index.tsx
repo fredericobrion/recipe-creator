@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
 import { addIngredient } from "../../state/ingredients/ingredientsSlice";
 import { addSpice } from "../../state/spices/spicesSlice";
+import Swal from 'sweetalert2';
 
 type IngredientsContainerProps = {
   spice: boolean;
@@ -21,11 +22,19 @@ function IngredientsContainer({ spice }: IngredientsContainerProps) {
 
   const handleSubmitIngredient = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!ingredientOnInput) return;
     const ingredientAlreadyExists = ingredientsList.some(
-      (ingredient) => ingredient === ingredientOnInput
+      (ingredient) =>
+        ingredient.toLowerCase() === ingredientOnInput.toLowerCase()
     );
     if (ingredientAlreadyExists) {
-      alert("Este ingrediente já foi adicionado.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Este ingrediente já foi adicionado!',
+        background: '#363535',
+        color: '#e5e5e5'
+      })
       return;
     }
     dispatch(addIngredient(ingredientOnInput));
@@ -38,7 +47,13 @@ function IngredientsContainer({ spice }: IngredientsContainerProps) {
       (spice) => spice === ingredientOnInput
     );
     if (spiceAlreadyExists) {
-      alert("Este tempero já foi adicionado.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Este tempero já foi adicionado!',
+        background: '#363535',
+        color: '#e5e5e5'
+      })
       return;
     }
     dispatch(addSpice(ingredientOnInput));

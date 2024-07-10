@@ -1,21 +1,24 @@
 .container {
   align-items: center;
-  border: 1px solid #ccc;
+  background-color: var(--color-5);
+  border-radius: 5%;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  width: 10rem;
 }
 
 .selected {
-  border: 2px solid rgb(0, 128, 0)
+  border: 3px solid var(--color-3);
 }
 
 .container img {
-  width: 30%;
+  width: 40%;
 }
 
 .container p {
+  color: var(--color-1);
   font-size: 1.5rem;
 }

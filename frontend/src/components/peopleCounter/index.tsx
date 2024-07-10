@@ -9,11 +9,11 @@ function PeopleCounter() {
 
   return (
     <div className={styles.container}>
-      <h3>Quantidade de pessoas:</h3>
+      <h3>Quantidade de pessoas</h3>
       <div>
-        <button onClick={() => dispatch(removePerson())}>-</button>
+        <button className={styles.decrease} onClick={() => dispatch(removePerson())}>-</button>
         <span>{people}</span>
-        <button onClick={() => dispatch(addPerson())}>+</button>
+        <button className={styles.increase} onClick={() => dispatch(addPerson())}>+</button>
       </div>
     </div>
   );

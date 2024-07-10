@@ -5,6 +5,7 @@ import { addRecipe } from '../../state/recipe/recipeSlice';
 import { setLoading } from "../../state/loading/loadingSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 function GenerateRecipeButton() {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,17 +26,35 @@ function GenerateRecipeButton() {
 
   const handleCreateRecipe = async () => {
     if (!confirmCookingMethods) {
-      alert("Selecione pelo menos um método de cozimento");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecione pelo menos um método de cozimento',
+        background: '#363535',
+        color: '#e5e5e5'
+      })
       return;
     }
 
     if (!confirmIngredients) {
-      alert("Digite pelo menos um ingrediente");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Digite pelo menos um ingrediente',
+        background: '#363535',
+        color: '#e5e5e5'
+      })
       return;
     }
 
     if (!confirmSpices) {
-      alert("Digite pelo menos um tempero");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Digite pelo menos um tempero',
+        background: '#363535',
+        color: '#e5e5e5'
+      })
       return;
     }
 
