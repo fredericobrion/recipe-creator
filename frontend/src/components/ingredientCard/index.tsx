@@ -4,6 +4,7 @@ import { AppDispatch } from "../../state/store";
 import { removeIngredient } from "../../state/ingredients/ingredientsSlice";
 import { removeSpice } from "../../state/spices/spicesSlice";
 import { useState } from "react";
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 
 type IngredientCardProps = {
   ingredient: string;
@@ -25,7 +26,7 @@ function IngredientCard({ ingredient, spice }: IngredientCardProps) {
 
   return (
     <div className={styles.container}>
-      <p>- {ingredient}</p>
+      <p>- {capitalizeFirstLetter(ingredient)}</p>
       <button
         className={`${styles.button} ${isDeleting ? styles.delete : ""}`}
         onClick={handleClick}

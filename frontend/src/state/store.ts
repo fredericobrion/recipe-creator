@@ -6,6 +6,7 @@ import peopleReducer from './people/peopleSlice';
 import recipeReducer from './recipe/recipeSlice';
 import errorReducer from './error/errorSlice';
 import loadingReducer from './loading/loadingSlice';
+import themeReducer from './theme/themSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     recipe: recipeReducer,
     error: errorReducer,
     loading: loadingReducer,
+    theme: themeReducer,
   },
 });
 

@@ -5,10 +5,26 @@
   font-size: 3rem;
   font-weight: 700;
   height: 8rem;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 4rem;
 }
 
 .link {
   color: var(--color-4);
+  flex: 1;
+  text-align: center;
   text-decoration: none;
+}
+
+.toggle {
+  flex-shrink: 0;
+  scale: 4;
+}
+
+.toggle__light {
+  color: var(--color-4)
+}
+
+.toggle__dark {
+  color: yellow;
 }

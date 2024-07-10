@@ -1,5 +1,6 @@
 .ingredientsContainer {
   display: flex;
+  gap: 5%;
   margin: 0 auto;
   width: 80%;
 }

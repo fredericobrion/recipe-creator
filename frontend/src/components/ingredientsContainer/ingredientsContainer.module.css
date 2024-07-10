@@ -3,7 +3,7 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  margin: 5rem;
+  margin: 5rem 0;
   width: 100%;
 }
 
@@ -16,8 +16,8 @@
 .container input {
   border: none;
   border-radius: 5px;
-  height: 2rem;
-  margin: 0 0 0.5rem 5%;
+  height: 3rem;
+  margin: 0 0 2rem 5%;
   padding-left: 0.5rem;
   width: 90%;
 }
