@@ -1,10 +1,11 @@
 import styles from "./ingredientCard.module.css";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../state/store";
 import { removeIngredient } from "../../state/ingredients/ingredientsSlice";
 import { removeSpice } from "../../state/spices/spicesSlice";
 import { useState } from "react";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import classNames from "classnames";
 
 type IngredientCardProps = {
   ingredient: string;
@@ -13,6 +14,8 @@ type IngredientCardProps = {
 
 function IngredientCard({ ingredient, spice }: IngredientCardProps) {
   const dispatch = useDispatch<AppDispatch>();
+
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
 
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -26,7 +29,7 @@ function IngredientCard({ ingredient, spice }: IngredientCardProps) {
 
   return (
     <div className={styles.container}>
-      <p>- {capitalizeFirstLetter(ingredient)}</p>
+      <p className={classNames(styles.item, {[styles.item__light]: !darkTheme})}>- {capitalizeFirstLetter(ingredient)}</p>
       <button
         className={`${styles.button} ${isDeleting ? styles.delete : ""}`}
         onClick={handleClick}

@@ -19,6 +19,8 @@ function CookingCard({ image, method }: CookingCardProps) {
     (state: RootState) => state.cookingMethods.value
   );
 
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
+
   const handleCookingMethod = (cookingMethod: CookingMethods) => {
     if (cookingMethods.includes(cookingMethod)) {
       dispatch(removeCookingMethod(cookingMethod));
@@ -33,11 +35,14 @@ function CookingCard({ image, method }: CookingCardProps) {
     <div
       className={classNames(styles.container, {
         [styles.selected]: methodSelected,
+        [styles.container__light]: !darkTheme,
       })}
       onClick={() => handleCookingMethod(method)}
     >
       <img src={image} alt={method} />
-      <p>{method}</p>
+      <p className={classNames(styles.p, { [styles.p__light]: !darkTheme })}>
+        {method}
+      </p>
     </div>
   );
 }

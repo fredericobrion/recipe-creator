@@ -7,8 +7,12 @@
   width: 90%;
 }
 
-.container p {
+.item {
   font-size: 1.5rem;
+}
+
+.item__light {
+  color: var(--color-1);
 }
 
 /* Code from https://github.com/gevendra2004/gevstack/tree/main/Delete-button-animation */

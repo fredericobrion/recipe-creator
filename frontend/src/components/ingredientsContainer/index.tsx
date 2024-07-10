@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from "../../state/store";
 import { addIngredient } from "../../state/ingredients/ingredientsSlice";
 import { addSpice } from "../../state/spices/spicesSlice";
 import Swal from 'sweetalert2';
+import classNames from "classnames";
 
 type IngredientsContainerProps = {
   spice: boolean;
@@ -17,6 +18,8 @@ function IngredientsContainer({ spice }: IngredientsContainerProps) {
     (state: RootState) => state.ingredients.value
   );
   const spiceList = useSelector((state: RootState) => state.spices.value);
+
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
 
   const [ingredientOnInput, setIngredientOnInput] = useState("");
 
@@ -64,8 +67,8 @@ function IngredientsContainer({ spice }: IngredientsContainerProps) {
 
   return (
     <>
-      <div className={styles.container}>
-        <h2>{spice ? "Temperos" : "Ingredientes"}</h2>
+      <div className={classNames(styles.container, {[styles.container__light]: !darkTheme})}>
+        <h2 className={classNames(styles.type, {[styles.type__light]: !darkTheme})}>{spice ? "Temperos" : "Ingredientes"}</h2>
         <form
           onSubmit={(e) =>
             spice ? handleSubmitSpice(e) : handleSubmitIngredient(e)

@@ -12,6 +12,11 @@
   width: 8rem;
 }
 
+.button__light {
+  background-color: var(--color-2);
+  color: var(--color-5);
+}
+
 .button:hover {
   border: 2px solid var(--color-3);
   opacity: 0.9;

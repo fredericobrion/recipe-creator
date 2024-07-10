@@ -4,8 +4,25 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./components/layout";
 import LoadingPage from "./pages/loadingPage";
 import RecipePage from "./pages/recipePage";
+import { useSelector } from "react-redux";
+import { RootState } from "./state/store";
+import { useEffect } from "react";
 
 function App() {
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
+  
+  const changeColor = (newColor: string) => {
+    document.documentElement.style.setProperty("--background", newColor)
+  }
+
+  useEffect(() => {
+    if (darkTheme) {
+      changeColor("#000000")
+    } else {
+      changeColor("#ffffff")
+    }
+  }, [darkTheme]);
+
   return (
     <>
       <Routes>

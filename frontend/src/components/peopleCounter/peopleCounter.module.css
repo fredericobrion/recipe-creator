@@ -6,8 +6,12 @@
   justify-content: center;
 }
 
-.container h3 {
+.people {
   font-size: 1.8rem;
+}
+
+.people__light {
+  color: var(--color-1);
 }
 
 .container div {
@@ -16,8 +20,12 @@
   gap: 1rem;
 }
 
-.container span {
+.counter {
   font-size: 1.5rem;
+}
+
+.counter__light {
+  color: var(--color-1);
 }
 
 .container button {

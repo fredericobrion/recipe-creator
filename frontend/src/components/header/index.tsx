@@ -12,7 +12,7 @@ function Header() {
 
   const [isToggled, setToggle] = useState(false);
 
-  const dark = useSelector((state: RootState) => state.theme.dark);
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
 
   useEffect(() => {
     dispatch(toggleTheme());
@@ -25,7 +25,7 @@ function Header() {
       </Link>
       <Classic
         className={`${styles.toggle} ${
-          dark ? styles.toggle__dark : styles.toggle__light
+          darkTheme ? styles.toggle__dark : styles.toggle__light
         }`}
         duration={750}
         toggled={isToggled}

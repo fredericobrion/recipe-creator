@@ -6,6 +6,7 @@ import { setLoading } from "../../state/loading/loadingSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import classNames from "classnames";
 
 function GenerateRecipeButton() {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,6 +20,8 @@ function GenerateRecipeButton() {
     (state: RootState) => state.ingredients.value
   );
   const spices = useSelector((state: RootState) => state.spices.value);
+
+  const darkTheme = useSelector((state: RootState) => state.theme.dark);
 
   const confirmIngredients = ingredients.length > 0;
   const confirmSpices = spices.length > 0;
@@ -80,7 +83,7 @@ function GenerateRecipeButton() {
   };
 
   return (
-    <button className={styles.button} onClick={() => handleCreateRecipe()}>
+    <button className={classNames(styles.button, {[styles.button__light]: !darkTheme})} onClick={() => handleCreateRecipe()}>
       Gerar receita
     </button>
   );
