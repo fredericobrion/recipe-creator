@@ -7,3 +7,8 @@
   height: 8rem;
   justify-content: center;
 }
+
+.link {
+  color: var(--color-4);
+  text-decoration: none;
+}
