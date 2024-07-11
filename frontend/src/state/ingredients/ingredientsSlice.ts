@@ -20,9 +20,13 @@ const ingredientsSlice = createSlice({
         (ingredient) => ingredient !== action.payload
       );
     },
+    cleanIngredients: (state) => {
+      state.value = [];
+    },
   },
 });
 
-export const { addIngredient, removeIngredient } = ingredientsSlice.actions;
+export const { addIngredient, removeIngredient, cleanIngredients } =
+  ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer;

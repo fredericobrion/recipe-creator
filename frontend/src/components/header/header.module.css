@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
 .header {
   align-items: center;
   background-color: var(--color-2);
@@ -7,6 +9,10 @@
   height: 8rem;
   justify-content: space-between;
   padding: 0 4rem;
+}
+
+.header h1 {
+  font-family: "Quattrocento Sans", sans-serif;
 }
 
 .link {

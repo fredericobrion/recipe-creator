@@ -21,9 +21,13 @@ const cookingMethodsSlice = createSlice({
         (cookingMethod) => cookingMethod !== action.payload
       );
     },
+    cleanCookingMethods: (state) => {
+      state.value = [];
+    },
   },
 });
 
-export const { addCookingMethod, removeCookingMethod } = cookingMethodsSlice.actions;
+export const { addCookingMethod, removeCookingMethod, cleanCookingMethods } =
+  cookingMethodsSlice.actions;
 
 export default cookingMethodsSlice.reducer;

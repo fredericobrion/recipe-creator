@@ -1,4 +1,4 @@
-import Loader from "../../components/loader/indes";
+import Loader from "../../components/loader";
 import styles from "./loadingPage.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
@@ -18,7 +18,6 @@ function LoadingPage() {
 
   return (
     <div className={styles.container}>
-      <h2>Criando receita</h2>
       <Loader />
     </div>
   );

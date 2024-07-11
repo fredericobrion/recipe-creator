@@ -16,13 +16,14 @@ const spicesSlice = createSlice({
       state.value = [...state.value, action.payload];
     },
     removeSpice: (state, action: PayloadAction<string>) => {
-      state.value = state.value.filter(
-        (spice) => spice !== action.payload
-      );
+      state.value = state.value.filter((spice) => spice !== action.payload);
+    },
+    cleanSpices: (state) => {
+      state.value = [];
     },
   },
 });
 
-export const { addSpice, removeSpice } = spicesSlice.actions;
+export const { addSpice, removeSpice, cleanSpices } = spicesSlice.actions;
 
 export default spicesSlice.reducer;

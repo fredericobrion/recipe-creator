@@ -1,19 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
 .container {
   display: flex;
+  font-family: "Quattrocento Sans", sans-serif;
   flex-direction: column;
+}
+
+.container__light {
+  color: var(--color-1)
 }
 
 .recipeName {
   align-self: center;
   font-size: 2.5rem;
+  font-weight: 700;
   margin: 2rem 0;
 }
 
 .subTitle {
   font-size: 1.4rem;
-  margin: 1rem 0 0.5rem 10%;
+  font-weight: 700;
+  margin: 1rem 0 1rem 10%;
 }
 
 .item {
-  margin: 0 0 0.5rem 12%;
+  margin: 0 0 1rem 12%;
 }

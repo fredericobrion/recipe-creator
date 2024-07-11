@@ -73,8 +73,8 @@ function GenerateRecipeButton() {
       navigate("/creating");
       const response = await axios.post('http://localhost:3000/recipe', data);
       dispatch(addRecipe(response.data.message));
-      dispatch(setLoading(false));
       navigate("/recipe");
+      setTimeout(() => dispatch(setLoading(false)), 1000);
     } catch (error) {
       navigate("/");
       dispatch(setLoading(false));
