@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import classNames from "classnames";
+import { addError } from "../../state/error/errorSlice";
 
 function GenerateRecipeButton() {
   const dispatch = useDispatch<AppDispatch>();
@@ -72,13 +73,18 @@ function GenerateRecipeButton() {
       dispatch(setLoading(true));
       navigate("/creating");
       const response = await axios.post('http://localhost:3000/recipe', data);
+      console.log(response);
       dispatch(addRecipe(response.data.message));
       navigate("/recipe");
       setTimeout(() => dispatch(setLoading(false)), 1000);
     } catch (error) {
-      navigate("/");
-      dispatch(setLoading(false));
-      console.log(error);
+      if (error.response?.data.message.errorDetails[0].reason === "API_KEY_INVALID") {
+        dispatch(addError("Chave da API inválida"));
+      } else {
+        dispatch(addError("Erro no servidor ao gerar receita"));
+      }
+      navigate("/error");
+      setTimeout(() => dispatch(setLoading(false)), 1000);
     }
   };
 

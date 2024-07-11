@@ -11,8 +11,18 @@ export default class RecipeController {
     const ingredients = req.body.ingredients;
     const spices = req.body.spices;
 
-    const response = await this.recipeService.generateRecipe(people, cookingMethods, ingredients, spices);
+    try {
+      const response = await this.recipeService.generateRecipe(
+        people,
+        cookingMethods,
+        ingredients,
+        spices
+      );
 
-    return res.status(mapStatusHTTP(response.status)).json(response.data);
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: error });
+    }
   }
 }
