@@ -24,3 +24,20 @@ Back-end:
 - <a href="https://joi.dev/" target="_blank">Joi</a>
 
 ## ⚙️ Iniciando a aplicação:
+1. Clone o repositório e acesse o diretório da aplicação:
+  ```
+  git clone git@github.com:fredericobrion/recipe-creator.git && cd recipe-creator
+  ```
+2. Instale as dependências e inicie o frontend da aplicação:
+  ```
+  cd frontend && npm install && npm run dev
+  ```
+3. Em um novo terminal navegue até o diretório de backend e crie o arquivo ```.env``` que irá conter as variáveis de ambiente.
+  ```
+  cd backend && touch .env
+  ```
+4. Preencha o arquivo ```.env``` seguindo o modelo ```.env.example```. Caso não possua uma chave, obtenha aqui <a href="https://aistudio.google.com/app/apikey" target="_blank">aqui</a>
+5. Instale as dependências e inicie o servidor:
+```
+npm install && npm run dev
+```
