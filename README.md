@@ -22,6 +22,7 @@ Back-end:
 - <a href="https://github.com/expressjs/cors" target="_blank">Cors</a>
 - <a href="https://github.com/motdotla/dotenv" target="_blank">Dotenv</a>
 - <a href="https://joi.dev/" target="_blank">Joi</a>
+- <a href="https://github.com/express-rate-limit/express-rate-limit" target="_blank">express-rate-limit</a>
 
 ## ⚙️ Iniciando a aplicação:
 1. Clone o repositório e acesse o diretório da aplicação:

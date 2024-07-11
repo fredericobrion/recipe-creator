@@ -1,11 +1,11 @@
 import styles from "./generateButton.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
-import { addRecipe } from '../../state/recipe/recipeSlice';
+import { addRecipe } from "../../state/recipe/recipeSlice";
 import { setLoading } from "../../state/loading/loadingSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import classNames from "classnames";
 import { addError } from "../../state/error/errorSlice";
 
@@ -31,34 +31,34 @@ function GenerateRecipeButton() {
   const handleCreateRecipe = async () => {
     if (!confirmCookingMethods) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Selecione pelo menos um método de cozimento',
-        background: '#363535',
-        color: '#e5e5e5'
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Selecione pelo menos um método de cozimento",
+        background: "#363535",
+        color: "#e5e5e5",
+      });
       return;
     }
 
     if (!confirmIngredients) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Digite pelo menos um ingrediente',
-        background: '#363535',
-        color: '#e5e5e5'
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Digite pelo menos um ingrediente",
+        background: "#363535",
+        color: "#e5e5e5",
+      });
       return;
     }
 
     if (!confirmSpices) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Digite pelo menos um tempero',
-        background: '#363535',
-        color: '#e5e5e5'
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Digite pelo menos um tempero",
+        background: "#363535",
+        color: "#e5e5e5",
+      });
       return;
     }
 
@@ -72,14 +72,18 @@ function GenerateRecipeButton() {
     try {
       dispatch(setLoading(true));
       navigate("/creating");
-      const response = await axios.post('http://localhost:3000/recipe', data);
-      console.log(response);
+      const response = await axios.post("http://localhost:3000/recipe", data);
       dispatch(addRecipe(response.data.message));
       navigate("/recipe");
       setTimeout(() => dispatch(setLoading(false)), 1000);
     } catch (error) {
-      if (error.response?.data.message.errorDetails[0].reason === "API_KEY_INVALID") {
+      if (
+        error.response?.data?.message?.errorDetails[0]?.reason ===
+        "API_KEY_INVALID"
+      ) {
         dispatch(addError("Chave da API inválida"));
+      } else if (error.response?.data.includes("many requests")) {
+        dispatch(addError("Muitas requisições ao servidor, tente novamente em alguns minutos"));
       } else {
         dispatch(addError("Erro no servidor ao gerar receita"));
       }
@@ -89,7 +93,12 @@ function GenerateRecipeButton() {
   };
 
   return (
-    <button className={classNames(styles.button, {[styles.button__light]: !darkTheme})} onClick={() => handleCreateRecipe()}>
+    <button
+      className={classNames(styles.button, {
+        [styles.button__light]: !darkTheme,
+      })}
+      onClick={() => handleCreateRecipe()}
+    >
       Gerar receita
     </button>
   );
