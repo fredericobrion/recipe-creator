@@ -11,18 +11,46 @@ import classNames from "classnames";
 import { cleanCookingMethods } from "../../state/cookingMethods/cookingMethodsSlice";
 import { cleanIngredients } from "../../state/ingredients/ingredientsSlice";
 import { cleanSpices } from "../../state/spices/spicesSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { HeartSwitch } from "@anatoliygatt/heart-switch";
+import {
+  getFavoritesRecipe,
+  removeFavoriteRecipe,
+  addFavoritesRecipe,
+} from "../../utils/favoritesRecipe";
 
 function RecipePage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [favoritesRecipes, setFavoritesRecipes] = useState<string[]>(
+    getFavoritesRecipe()
+  );
 
   const recipe = useSelector((state: RootState) => state.recipe.value);
   const darkTheme = useSelector((state: RootState) => state.theme.dark);
 
+  const isFavorite = favoritesRecipes.includes(recipe);
+
+  const handleAddRecipe = (recipe: string) => {
+    setFavoritesRecipes([...favoritesRecipes, recipe]);
+    addFavoritesRecipe(recipe);
+  };
+
+  const handleRemoveRecipe = (recipe: string) => {
+    setFavoritesRecipes(favoritesRecipes.filter((r) => r !== recipe));
+    removeFavoriteRecipe(recipe);
+  };
+
   useEffect(() => {
-    dispatch(cleanCookingMethods());
-    dispatch(cleanIngredients());
-    dispatch(cleanSpices());
+    if (recipe === "") {
+      navigate("/");
+    } else {
+      dispatch(cleanCookingMethods());
+      dispatch(cleanIngredients());
+      dispatch(cleanSpices());
+    }
   }, []);
 
   return (
@@ -31,7 +59,21 @@ function RecipePage() {
         [styles.container__light]: !darkTheme,
       })}
     >
-      <h2 className={styles.recipeName}>{extractRecipeName(recipe)}</h2>
+      <div className={styles.recipeNameContainer}>
+        <h2 className={styles.recipeName}>{extractRecipeName(recipe)}</h2>
+        <HeartSwitch
+          size="sm"
+          inactiveTrackFillColor="#eca6a6"
+          inactiveTrackStrokeColor="#e58e8e"
+          activeTrackFillColor="#a71c1c"
+          activeTrackStrokeColor="#970b0b"
+          inactiveThumbColor="#ecfeff"
+          activeThumbColor="#ebaeae"
+          onChange={() =>
+            isFavorite ? handleRemoveRecipe(recipe) : handleAddRecipe(recipe)
+          }
+        />
+      </div>
       <div>
         <h3 className={styles.subTitle}>Ingredientes</h3>
         {extractIngredients(recipe).map((ingredient, index) => {

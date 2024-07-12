@@ -15,16 +15,38 @@
   font-family: "Quattrocento Sans", sans-serif;
 }
 
-.link {
+.header div {
+  align-items: center;
+  display: flex;
+  gap: 3rem;
+}
+
+.mainLink {
   color: var(--color-4);
   flex: 1;
   text-align: center;
   text-decoration: none;
 }
 
+.heartLink {
+  width: 3.2rem;
+}
+
+.heartLink img {
+  width: 3.2rem;
+}
+
 .toggle {
-  flex-shrink: 0;
   scale: 4;
+  height: 1rem;
+}
+
+.toggle:hover {
+  scale: 4.4;
+}
+
+.toggle button {
+  height: 1rem;
 }
 
 .toggle__light {
@@ -32,5 +54,5 @@
 }
 
 .toggle__dark {
-  color: yellow;
+  color: var(--color-3);
 }
